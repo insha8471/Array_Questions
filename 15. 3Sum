@@ -1,3 +1,4 @@
+Brute force
 //Time complexity : O(n*3*log(number of unique triplet))
 //space complexity : O(2*number of unique triplet) #set and list
 
@@ -19,3 +20,31 @@ class Solution {
         return res;
     }
 }
+
+************************************************************************************************************************************
+Approach : Better Approach
+//Time complexity : O(n*2*log(number of unique triplet))
+//space complexity : O(2*number of unique triplet) #set and list
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        Set<List<Integer>> st = new HashSet<>();
+        for(int i=0;i<nums.length;i++){
+            Set<Integer> hashset = new HashSet<>();
+            for(int j=i+1;j<nums.length;j++){
+                int target = -(nums[i] + nums[j]);
+
+                if(hashset.contains(target)){
+                    List<Integer> temp = Arrays.asList(nums[i], nums[j], target);
+                    temp.sort(null);
+                    st.add(temp);                    
+                }
+                hashset.add(nums[j]);
+            }
+        }
+        List<List<Integer>> res = new ArrayList<>(st);
+        return res;
+    }
+}
+
+****************************************************************************************************************************
